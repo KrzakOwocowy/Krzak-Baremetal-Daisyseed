@@ -3,7 +3,7 @@ OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
 
 TARGET = build/firmware
-SRC = src/main.c src/startup_stm32h750.c src/led.c  src/system_clock.c src/audio_codec.c src/dma.c src/setup.c src/fpu.c
+SRC = src/main.c src/startup_stm32h750.c src/led.c  src/system_clock.c src/audio_codec.c src/dma.c src/setup.c src/fpu.c src/dsp_gain.c
 INC = -Iinclude
 
 CPU = -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16
