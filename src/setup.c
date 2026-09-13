@@ -10,4 +10,5 @@ void system_setup(audio_callback callback){
     audio_codec_setup();
     dma_set_audio_callback(callback);
     dma_setup();
+    audio_codec_sai_start();
 }

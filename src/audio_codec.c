@@ -78,16 +78,16 @@ static inline void audio_codec_sai_enable(void){
 
 static inline void audio_codec_sai_configuration(void){
     SAI1_Block_A->CR1 &= ~SAI_xCR1_SAIEN;
-    SAI1_Block_A->CR1 |= SAI_xCR1_DS_2 | SAI_xCR1_DS_1 | SAI_xCR1_MCKEN | SAI_xCR1_DMAEN;
-    SAI1_Block_A->FRCR = (SAI_FRAME_LENGTH << SAI_xFRCR_FRL_Pos) | (SAI_FS_ACTIVE_HALF << SAI_xFRCR_FSALL_Pos) | SAI_xFRCR_FSPOL;
+    SAI1_Block_A->CR1 |= SAI_xCR1_DS_2 | SAI_xCR1_DS_1 | SAI_xCR1_MCKEN | SAI_xCR1_DMAEN | (1UL << SAI_xCR1_MCKDIV_Pos) | SAI_xCR1_CKSTR;
+    SAI1_Block_A->FRCR = (SAI_FRAME_LENGTH << SAI_xFRCR_FRL_Pos) | (SAI_FS_ACTIVE_HALF << SAI_xFRCR_FSALL_Pos) | SAI_xFRCR_FSDEF | SAI_xFRCR_FSPOL;
     SAI1_Block_A->SLOTR = SAI_xSLOTR_NBSLOT_0 | SAI_xSLOTR_SLOTSZ_1 | (((1U << 0) | (1U << 1)) << SAI_xSLOTR_SLOTEN_Pos);
     SAI1_Block_B->FRCR = SAI1_Block_A->FRCR;
     SAI1_Block_B->SLOTR = SAI1_Block_A->SLOTR;
     SAI1_Block_B->CR1 &= ~SAI_xCR1_SAIEN;
-    SAI1_Block_B->CR1 = SAI_xCR1_MODE_1 | SAI_xCR1_MODE_0 | SAI_xCR1_SYNCEN_0 | SAI_xCR1_DS_2 | SAI_xCR1_DS_1 | SAI_xCR1_DMAEN;
+    SAI1_Block_B->CR1 = SAI_xCR1_MODE_1 | SAI_xCR1_MODE_0 | SAI_xCR1_SYNCEN_0 | SAI_xCR1_DS_2 | SAI_xCR1_DS_1 | SAI_xCR1_DMAEN | SAI_xCR1_CKSTR;
 }
 
-static inline void audio_codec_sai_start(void){
+void audio_codec_sai_start(void){
     SAI1_Block_B->CR1 |= SAI_xCR1_SAIEN;
     SAI1_Block_A->CR1 |= SAI_xCR1_SAIEN;
 }
@@ -97,5 +97,4 @@ void audio_codec_setup(void){
     audio_codec_clock();
     audio_codec_sai_enable();
     audio_codec_sai_configuration();
-    audio_codec_sai_start();
 }

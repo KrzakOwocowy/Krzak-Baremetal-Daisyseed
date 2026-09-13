@@ -4,4 +4,6 @@
 //configure SAI interface
 void audio_codec_setup(void);
 
+void audio_codec_sai_start(void);
+
 #endif

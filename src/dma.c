@@ -67,7 +67,7 @@ void dma_setup(void){
 
 static inline void convert_and_callback(volatile uint32_t* audio_in, volatile uint32_t* audio_out, int size){
     for (int counter = 0; counter < size; counter++){
-        int32_t raw_int = (int32_t)audio_in[counter];
+        int32_t raw_int = ((int32_t)audio_in[counter] << 8);
         float_in[counter] = (float)raw_int * SCALE_DOWN;
     }
 
@@ -77,7 +77,7 @@ static inline void convert_and_callback(volatile uint32_t* audio_in, volatile ui
 
     for (int counter = 0; counter < size; counter++){
         int32_t out_int = (int32_t)(float_out[counter] * SCALE_UP);
-        audio_out[counter] = (uint32_t)out_int;
+        audio_out[counter] = ((uint32_t)out_int >> 8);
     }
 }
 
