@@ -10,6 +10,7 @@ Compile the project with `make` and flash it with `make flash` (make sure to put
 
 You can place any DSP math inside the `for` loop in the `process_audio` function in main.c (currently a passthrough for demonstration purposes)
 or you can use the provided DSP functions from `dsp.h`:
+
 `dsp_gain.h`:
 -  `gain_hard_clip()`
 -  `gain_tanh_distortion()`
