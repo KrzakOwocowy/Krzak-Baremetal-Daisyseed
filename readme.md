@@ -13,6 +13,8 @@ or you can use the provided DSP functions from `dsp.h`:
 `dsp_gain.h`:
 -  `gain_hard_clip()`
 -  `gain_tanh_distortion()`
+`dsp_delay.h`:
+-  `delay()`
 
 `system_setup` functionalities implemented:
 -  basic control over the onboard LED (`led.c`)

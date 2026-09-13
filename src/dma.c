@@ -58,15 +58,15 @@ void dma_setup(void){
     dma_clock_enable();
     dma_mux_configuration();
     dma_configuration();
-    for(int counter=0; counter<BUFFER_SIZE; counter++){
+    for(uint32_t counter=0; counter<BUFFER_SIZE; counter++){
         rx_buffer[counter] = 0;
         tx_buffer[counter] = 0;
     }
     dma_start();
 }
 
-static inline void convert_and_callback(volatile uint32_t* audio_in, volatile uint32_t* audio_out, int size){
-    for (int counter = 0; counter < size; counter++){
+static inline void convert_and_callback(volatile uint32_t* audio_in, volatile uint32_t* audio_out, uint32_t size){
+    for (uint32_t counter = 0; counter < size; counter++){
         int32_t raw_int = ((int32_t)audio_in[counter] << 8);
         float_in[counter] = (float)raw_int * SCALE_DOWN;
     }
@@ -75,7 +75,7 @@ static inline void convert_and_callback(volatile uint32_t* audio_in, volatile ui
         current_callback(float_in, float_out, size);
     }
 
-    for (int counter = 0; counter < size; counter++){
+    for (uint32_t counter = 0; counter < size; counter++){
         int32_t out_int = (int32_t)(float_out[counter] * SCALE_UP);
         audio_out[counter] = ((uint32_t)out_int >> 8);
     }
