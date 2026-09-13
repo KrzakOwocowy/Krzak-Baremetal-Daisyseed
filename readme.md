@@ -8,7 +8,7 @@ Before building this project, ensure you have the following tools installed and 
 
 Compile the project with `make` and flash it with `make flash` (make sure to put the board in DFU mode first)
 
-You can place any DSP math inside the `for` loop in the `process_audio` function in main.c (currently a passthrough for demonstration purposes)
+You can place any DSP math inside the `for` loop in the `process_audio` function in main.c
 or you can use the provided DSP functions from `dsp.h`:
 
 `dsp_gain.h`:
@@ -16,7 +16,7 @@ or you can use the provided DSP functions from `dsp.h`:
 -  `gain_tanh_distortion()`
 
 `dsp_delay.h`:
--  `delay()`
+-  `delay()` (needs a initialised buffer - see main.c for example)
 
 `system_setup` functionalities implemented:
 -  basic control over the onboard LED (`led.c`)
