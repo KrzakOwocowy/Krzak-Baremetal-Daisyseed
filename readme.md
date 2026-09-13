@@ -13,6 +13,7 @@ or you can use the provided DSP functions from `dsp.h`:
 `dsp_gain.h`:
 -  `gain_hard_clip()`
 -  `gain_tanh_distortion()`
+
 `dsp_delay.h`:
 -  `delay()`
 
