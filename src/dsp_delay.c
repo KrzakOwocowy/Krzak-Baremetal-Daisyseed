@@ -1,7 +1,7 @@
 #include "dsp_delay.h"
 
 void delay(const float* audio_in, float* audio_out, uint32_t size, uint32_t time_ms, float feedback, delay_line* target_delay_line){
-    uint32_t delay_time_samples = (uint32_t)(SAMPLE_RATE * time_ms);
+    uint32_t delay_time_samples = (uint32_t)((SAMPLE_RATE * time_ms) / 1000.0);
     for (uint32_t counter = 0; counter < size; counter++){
         float input_sample = audio_in[counter];
         int32_t read_index = (int32_t)(target_delay_line->counter) - (int32_t)delay_time_samples;
