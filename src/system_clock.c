@@ -75,6 +75,12 @@ static inline void enable_pll(void){
     }
 }
 
+static inline void enable_gpio_clocks(void){
+    RCC->AHB4ENR = RCC_AHB4ENR_GPIOBEN | RCC_AHB4ENR_GPIOCEN | RCC_AHB4ENR_GPIODEN | RCC_AHB4ENR_GPIOEEN | RCC_AHB4ENR_GPIOFEN | RCC_AHB4ENR_GPIOGEN | RCC_AHB4ENR_GPIOHEN | RCC_AHB4ENR_GPIOIEN;
+    volatile uint32_t dummy = RCC->AHB4ENR;
+    (void)dummy;
+}
+
 void system_clock_setup(void){
     set_voltage_scale();
     enable_hse_osc();
@@ -82,5 +88,6 @@ void system_clock_setup(void){
     pll_setup();
     configure_bus_prescaler();
     enable_pll();
+    enable_gpio_clocks();
 }
 

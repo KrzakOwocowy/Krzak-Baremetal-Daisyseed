@@ -20,7 +20,7 @@ static inline void delay_line_init(delay_line* target_delay_line, float* buffer,
 }
 
 #define DELAY_LINE(name, max_length_ms) \
-    static float name##_data[((SAMPLE_RATE)*(max_length_ms) / 1000) + 1]; \
+    __attribute__((section(".sdram_data"))) static float name##_data[((SAMPLE_RATE)*(max_length_ms) / 1000) + 1]; \
     static delay_line name
 
 #define DELAY_LINE_INIT(name) \

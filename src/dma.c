@@ -21,6 +21,8 @@ static inline void dma_clock_enable(void){
     set_bit(&RCC->AHB1ENR, RCC_AHB1ENR_DMA1EN_Pos, 1);
     volatile uint32_t dummy = RCC->AHB1ENR;
     (void)dummy;
+    RCC->AHB2ENR |= RCC_AHB2ENR_SRAM1EN | RCC_AHB2ENR_SRAM2EN | RCC_AHB2ENR_SRAM3EN;
+    (void)RCC->AHB2ENR;
 }
 
 static inline void dma_mux_configuration(void){

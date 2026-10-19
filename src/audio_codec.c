@@ -6,11 +6,8 @@
 #define SAI_FRAME_LENGTH 63U
 #define SAI_FS_ACTIVE_HALF 31U
 
-static inline void audio_codec_gpio_clock(void){
-    set_bit(&RCC->AHB4ENR, RCC_AHB4ENR_GPIOBEN_Pos, 1);
-    set_bit(&RCC->AHB4ENR, RCC_AHB4ENR_GPIOEEN_Pos, 1);
-    volatile uint32_t dummy = RCC->AHB4ENR;
-    (void)dummy;
+static inline void audio_codec_reset_pin(void){
+    //this pin is nowhere to be found in the daisyseed docs but nothing works without turning it on.
     GPIOB->MODER &= ~GPIO_MODER_MODE11_Msk;
     GPIOB->MODER |= GPIO_MODER_MODE11_0;
     GPIOB->ODR |= (1U << 11);
@@ -61,7 +58,6 @@ static inline void audio_codec_gpio_set_speed(void){
 }
 
 static inline void audio_codec_gpio(void){
-    audio_codec_gpio_clock();
     audio_codec_gpio_mode();
     audio_codec_gpio_alternate_function();
     audio_codec_gpio_set_speed();
@@ -93,6 +89,7 @@ void audio_codec_sai_start(void){
 }
 
 void audio_codec_setup(void){
+    audio_codec_reset_pin();
     audio_codec_gpio();
     audio_codec_clock();
     audio_codec_sai_enable();
