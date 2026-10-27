@@ -44,6 +44,11 @@ static inline void filter_line_init(filter_line* target_filter_line, float cutof
             target_filter_line->b[1] = -2.0f / target_filter_line->alpha;
             target_filter_line->b[2] = target_filter_line->b[0];
             break;
+        default: //default to low-pass
+            target_filter_line->b[0] = target_filter_line->W / target_filter_line->alpha;
+            target_filter_line->b[1] = 2.0f * target_filter_line->W / target_filter_line->alpha;
+            target_filter_line->b[2] = target_filter_line->b[0];
+            break;
     }
 }
 

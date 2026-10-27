@@ -18,6 +18,9 @@ or you can use the provided DSP functions from `dsp.h`:
 `dsp_delay.h`:
 -  `delay()` (needs a initialised buffer - see main.c for example)
 
+`dsp_filter.h`:
+-  `filter()` (needs a initialised buffer - see main.c for example)
+
 `system_setup` functionalities implemented:
 -  basic control over the onboard LED (`led.c`)
 -  setting up a 400MHz PLL clock for the system core and a second PLL for the audio codec (`system_clock.c`)
