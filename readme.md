@@ -24,3 +24,4 @@ or you can use the provided DSP functions from `dsp.h`:
 -  enabling communication with the audio codec using the Serial Audio Interface (`audio_codec.c`)
 -  setting up DMA ping-pong buffers to recieve and transmit audio data (`dma.c`)
 -  utilising the FPU (`fpu.c`)
+-  setting up external SDRAM for longer delay lines (`sdram.c`)
