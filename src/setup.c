@@ -1,7 +1,6 @@
 #include "setup.h"
 
 void system_setup(void){
-    enable_fpu();
     SCB_EnableDCache();
     SCB_EnableICache();
     SCB->VTOR = (uint32_t)&vector_table;

@@ -4,8 +4,7 @@
 REVERB_LINE(reverb_1);
 
 void process_audio(const float* audio_in, float* audio_out, uint32_t size){
-    write_to_output(audio_in, audio_out, size);
-    //reverb(audio_in, audio_out, size, 0.85, &reverb_1);
+    reverb(audio_in, audio_out, size, 5, &reverb_1);
 }
 
 int main(void){

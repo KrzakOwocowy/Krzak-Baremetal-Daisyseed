@@ -1,4 +1,8 @@
 #include <stdint.h>
+#include "stm32h7xx.h"
+
+#define SCB_CPACR_CP10 (3UL << 20)
+#define SCB_CPACR_CP11 (3UL << 22)
 
 extern uint32_t _estack;
 extern uint32_t _sidata;
@@ -19,6 +23,9 @@ void Reset_Handler(void){
     while (dest < &_ebss){
         *dest++ = 0;
     }
+
+    SCB->CPACR |= (SCB_CPACR_CP10 | SCB_CPACR_CP11);
+    
     main();
     while(1);
 }

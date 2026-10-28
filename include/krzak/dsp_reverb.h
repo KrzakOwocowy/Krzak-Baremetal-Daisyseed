@@ -31,6 +31,6 @@ static inline void reverb_line_init(reverb_line* target_reverb_line, float* buff
 #define REVERB_LINE_INIT(name, cutoff) \
     reverb_line_init(&name, name##_data, cutoff)
 
-void reverb(const float* audio_in, float* audio_out, uint32_t size, float feedback, reverb_line* target_reverb_line);
+void reverb(const float* audio_in, float* audio_out, uint32_t size, float decay, reverb_line* target_reverb_line);
 
 #endif

@@ -2,7 +2,6 @@
 #include "system_clock.h"
 #include "audio_codec.h"
 #include "dma.h"
-#include "fpu.h"
 #include "sdram.h"
 #include "stm32h7xx.h"
 #include "utils.h"

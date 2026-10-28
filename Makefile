@@ -3,7 +3,7 @@ OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
 
 TARGET = build/firmware
-SRC = src/main.c src/startup_stm32h750.c src/led.c  src/system_clock.c src/audio_codec.c src/dma.c src/sdram.c src/setup.c src/fpu.c src/dsp_gain.c src/dsp_delay.c src/dsp_filter.c src/dsp_reverb.c
+SRC = src/main.c src/startup_stm32h750.c src/led.c  src/system_clock.c src/audio_codec.c src/dma.c src/sdram.c src/setup.c src/dsp_gain.c src/dsp_delay.c src/dsp_filter.c src/dsp_reverb.c
 
 INC = -Iinclude/cmsis -Iinclude/krzak
 

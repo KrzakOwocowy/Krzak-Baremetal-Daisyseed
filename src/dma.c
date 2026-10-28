@@ -78,6 +78,12 @@ static inline void convert_and_callback(volatile uint32_t* audio_in, volatile ui
     }
 
     for (uint32_t counter = 0; counter < size; counter++){
+        if (float_out[counter] > 1.0f){
+            float_out[counter] = 1.0f;
+        }
+        if (float_out[counter] < -1.0f){
+            float_out[counter] = -1.0f;
+        }
         int32_t out_int = (int32_t)(float_out[counter] * SCALE_UP);
         audio_out[counter] = ((uint32_t)out_int >> 8);
     }
