@@ -25,8 +25,8 @@ void comb_filter(const float* audio_in, float* audio_out, uint32_t size, uint32_
             read_index += (int32_t)target_filter_line->delay_filter_line.size;
         }
         float damped_sample = filter_sample(&target_filter_line->lp_filter_line, target_filter_line->delay_filter_line.buffer[read_index]);
-        audio_out[counter] = audio_in[counter] + (damped_sample * feedback);
-        target_filter_line->delay_filter_line.buffer[target_filter_line->delay_filter_line.counter] = audio_out[counter];
+        target_filter_line->delay_filter_line.buffer[target_filter_line->delay_filter_line.counter] = audio_in[counter] + damped_sample * feedback;
+        audio_out[counter] = damped_sample;
         target_filter_line->delay_filter_line.counter++;
         if (target_filter_line->delay_filter_line.counter >= target_filter_line->delay_filter_line.size){
             target_filter_line->delay_filter_line.counter = 0;

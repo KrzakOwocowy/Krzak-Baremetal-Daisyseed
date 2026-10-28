@@ -22,6 +22,9 @@ or you can use the provided DSP functions from `dsp.h`:
 -  `filter()` (needs a initialised buffer - see main.c for example)
 -  `comb_filter()` (needs a initialised buffer - see main.c for example)
 
+`dsp_reverb.h`:
+-  `reverb()` (needs a initialised buffer - see main.c for example)
+
 `system_setup` functionalities implemented:
 -  basic control over the onboard LED (`led.c`)
 -  setting up a 400MHz PLL clock for the system core and a second PLL for the audio codec (`system_clock.c`)

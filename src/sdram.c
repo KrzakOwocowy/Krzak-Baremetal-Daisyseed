@@ -215,10 +215,22 @@ static inline void sdram_fmc_config(void){
     FMC_Bank5_6_R->SDRTR = (761UL << FMC_SDRTR_COUNT_Pos);
 }
 
+static inline void sdram_mpu_config(void){
+    MPU->CTRL = 0;
+    MPU->RNR = 0;
+    MPU->RBAR = 0xC0000000;
+    MPU->RASR = (3UL << MPU_RASR_AP_Pos) | (1UL << MPU_RASR_TEX_Pos) | (1UL << MPU_RASR_C_Pos) | (1UL << MPU_RASR_B_Pos) | (24UL << MPU_RASR_SIZE_Pos) | (1UL << MPU_RASR_ENABLE_Pos);
+    MPU->CTRL = MPU_CTRL_ENABLE_Msk | MPU_CTRL_PRIVDEFENA_Msk;
+    __DSB();
+    __ISB();
+}
+
 void sdram_setup(void){
     sdram_fmc_clock();
     sdram_gpio_mode();
     sdram_gpio_speed();
     sdram_gpio_alternate_function();
     sdram_fmc_config();
+    sdram_mpu_config();
 }
+

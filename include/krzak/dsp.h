@@ -3,6 +3,7 @@
 #include "dsp_gain.h"
 #include "dsp_delay.h"
 #include "dsp_filter.h"
+#include "dsp_reverb.h"
 
 //passes the signal through without doing anything to it, not necessary if any other dsp is used
 static inline void write_to_output(const float* audio_in, float* audio_out, uint32_t size){
